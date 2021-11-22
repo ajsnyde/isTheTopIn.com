@@ -15,11 +15,13 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
+<link rel="stylesheet" type="text/css" href="backgroundRotatingStripes.css">
+
 <body>
+    <div class="radial_stripes">
+    </div>
     <div class="row">
-        <h1 id="mainHeading">Is the top in?</h1>
-        <iframe width="0" height="0" src="https://www.youtube.com/embed/rP2MDtWu5t0?autoplay=1&loop=1" frameborder="0"
-        allowfullscreen></iframe>
+        <h1 class="heading" id="mainHeading">Is the top in?</h1>
     </div>
 </body>
 <script async>
@@ -31,24 +33,26 @@
         interval: 'monthly',
         amount: 300
     }).then(response => {
-        var lifetimeMax = Math.max.apply(Math, response.map(function(stockMonth) { return stockMonth.high; }));
+        var lifetimeMax = Math.max.apply(Math, response.map(function (stockMonth) { return stockMonth.high; }));
 
         console.log(response)
 
         stocks.timeSeries({
-        symbol: 'spy',
-        interval: 'daily',
-        amount: 1}).then(dailyResponse => {
+            symbol: 'spy',
+            interval: 'daily',
+            amount: 1
+        }).then(dailyResponse => {
 
             console.log(dailyResponse)
-            console.log({dailyHigh: dailyResponse[0].high, lifetimeHigh: lifetimeMax})
-            if(dailyResponse[0].high >= lifetimeMax){
+            console.log({ dailyHigh: dailyResponse[0].high, lifetimeHigh: lifetimeMax })
+            if (dailyResponse[0].high >= lifetimeMax) {
                 document.getElementById("mainHeading").innerHTML = "TOP IS IN";
-            } else{
+            } else {
                 document.getElementById("mainHeading").innerHTML = "TOP IS NOT IN";
             }
         }).catch(err => { console.log(err) });
-        })
+    })
         .catch(err => { console.log(err) });
 </script>
+
 </html>
