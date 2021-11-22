@@ -17,14 +17,22 @@
 
 <link rel="stylesheet" type="text/css" href="backgroundRotatingStripes.css">
 
-<body>
-    <iframe width="0" height="0" src="https://www.youtube.com/embed/rP2MDtWu5t0?autoplay=1&loop=1" frameborder="0" allowfullscreen></iframe>
-    <div class="radial_stripes">
+<body >
+    <div id="radial_stripes">
     </div>
-    <div class="row">
-        <h1 class="heading" id="mainHeading">Is the top in?</h1>
+
+    <div class="p-5 text-center">
+        <h1 class="mb-3" id="mainHeading">Is the top in?</h1>
     </div>
+
+<div id="falling text">
+
+
+</div>
+
 </body>
+
+
 <script async>
 
     stocks = new Stocks('SKF1K71QGJNM20JW');
@@ -46,14 +54,19 @@
 
             console.log(dailyResponse)
             console.log({ dailyHigh: dailyResponse[0].high, lifetimeHigh: lifetimeMax })
+
             if (dailyResponse[0].high >= lifetimeMax) {
+                document.getElementById("radial_stripes").innerHTML = "<iframe width=\"0\" height=\"0\" src=\"https://www.youtube.com/embed/rP2MDtWu5t0?autoplay=1&loop=1\" frameborder=\"0\" allowfullscreen></iframe>";
+                document.getElementById("radial_stripes").style.display = "inherit";
                 document.getElementById("mainHeading").innerHTML = "TOP IS IN";
             } else {
                 document.getElementById("mainHeading").innerHTML = "TOP IS NOT IN";
             }
+
         }).catch(err => { console.log(err) });
     })
         .catch(err => { console.log(err) });
 </script>
+
 
 </html>
