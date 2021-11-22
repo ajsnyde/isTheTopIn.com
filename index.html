@@ -56,11 +56,12 @@
             console.log({ dailyHigh: dailyResponse[0].high, lifetimeHigh: lifetimeMax })
 
             if (dailyResponse[0].high >= lifetimeMax) {
-                document.getElementById("radial_stripes").innerHTML = "<iframe width=\"0\" height=\"0\" src=\"https://www.youtube.com/embed/rP2MDtWu5t0?autoplay=1&loop=1\" frameborder=\"0\" allowfullscreen></iframe>";
+                new Audio('topIsIn.mp3').play();
+                
                 document.getElementById("radial_stripes").style.display = "inherit";
                 document.getElementById("mainHeading").innerHTML = "TOP IS IN";
             } else {
-                document.getElementById("mainHeading").innerHTML = "TOP IS NOT IN";
+                document.getElementById("mainHeading").innerHTML = "Top isn't in";
             }
 
         }).catch(err => { console.log(err) });
